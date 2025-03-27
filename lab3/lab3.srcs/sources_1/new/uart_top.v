@@ -61,6 +61,8 @@ module uart_top #(
       .oRxDone(wRxDone)
    
     );
+    
+    //we use nbytes+1 due to formatting of possible carry. See lab text
     reg rStart;
     reg [OPERAND_WIDTH-1:0] rA, rB;
     wire [OPERAND_WIDTH:0] wRes;
@@ -79,8 +81,8 @@ module uart_top #(
      );
          
         
-     
-  reg [$clog2(NBYTES)+1:0] rCnt;
+     //ditto
+    reg [$clog2(NBYTES)+1:0] rCnt;
   
   
   always @(posedge iClk)
@@ -101,6 +103,7 @@ module uart_top #(
     end 
   else 
     begin
+    //note = always define every possible scenario when possible, to avoid latches.
       case (rFSM)
    
         s_IDLE :
@@ -111,7 +114,9 @@ module uart_top #(
               rB <= 0;
               rStart <= 0;
           end
-          
+      //Because we have two mux'es, we have can seperate these two into two seperate states
+      //Both states wait for the rx, of their corresponding A/B, and then write this into the register
+      //After A is done, we go to B.    
         s_WAIT_RX_A :
           begin
             if (wRxDone)
@@ -137,13 +142,16 @@ module uart_top #(
                     end
                 end
           end
-          
+       //After having done both A and B, we trigger rStart of the MP adder
+       //We wait until it is done, but to make the sizes all equal we do the 
+       //zero padding of the final result   
        s_ADD :
        begin
           if (rStart == 0 && wDone == 0)
               rStart <= 1;
           else
-              rStart <= 0;          // Wait for addition to complete
+              rStart <= 0;
+              
           if (wDone) 
           begin
             rResult <= {7'b0000000, wRes};
@@ -157,9 +165,9 @@ module uart_top #(
               begin
                 rFSM <= s_WAIT_TX;
                 rTxStart <= 1; 
-                rTxByte <= rResult[(NBYTES+1)*8-1:(NBYTES+1)*8-8];
-                rResult <= {rResult[(NBYTES+1)*8-9:0], 8'b0000_0000};
-                rCnt <= rCnt + 1;
+                rTxByte <= rResult[(NBYTES+1)*8-1:(NBYTES+1)*8-8];        //we take the result per 8 bits, and then we send the MSB 
+                rResult <= {rResult[(NBYTES+1)*8-9:0], 8'b0000_0000};    //After getting the MSB out, we add 0's on the right, to push the old MSB out, and get the new one
+                rCnt <= rCnt + 1;                                        //we increment the counter,this goes upto Nbytes+1
               end 
             else 
               begin
