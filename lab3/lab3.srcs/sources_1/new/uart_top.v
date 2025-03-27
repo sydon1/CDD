@@ -65,10 +65,10 @@ module uart_top #(
     reg [OPERAND_WIDTH-1:0] rA, rB;
     wire [OPERAND_WIDTH:0] wRes;
     wire wDone;
-    reg [OPERAND_WIDTH:0]   rResult;
-    
-    mp_adder #(.OPERAND_WIDTH(OPERAND_WIDTH), .ADDER_WIDTH(ADDER_WIDTH))
-    MP_ADDER_INST
+    reg [(NBYTES+1)*8-1:0] rResult;
+        
+    mp_adder #(.OPERAND_WIDTH(OPERAND_WIDTH), .ADDER_WIDTH(ADDER_WIDTH), .N_ITERATIONS(OPERAND_WIDTH / ADDER_WIDTH))
+        MP_ADDER_INST
         (.iClk(iClk),
          .iRst(iRst),
          .iStart(rStart),
@@ -80,7 +80,7 @@ module uart_top #(
          
         
      
-  reg [$clog2(NBYTES):0] rCnt;
+  reg [$clog2(NBYTES)+1:0] rCnt;
   
   
   always @(posedge iClk)
@@ -116,12 +116,12 @@ module uart_top #(
           begin
             if (wRxDone)
               begin 
-              rBuffer <= {rBuffer[NBYTES*8-9:0], wRxByte};
+              rA <= {rA[OPERAND_WIDTH-9:0], wRxByte};
               rCnt <= rCnt + 1;
               if (rCnt == NBYTES-1) begin
-                rFSM <= s_TX;
+                rFSM <= s_WAIT_RX_B;
                 rCnt <= 0; // Reset counter for transmission            
-                end
+                    end
                 end
           end
           
@@ -129,36 +129,36 @@ module uart_top #(
           begin
             if (wRxDone)
               begin 
-              rBuffer <= {rBuffer[NBYTES*8-9:0], wRxByte};
+              rB <= {rB[OPERAND_WIDTH-9:0], wRxByte};
               rCnt <= rCnt + 1;
               if (rCnt == NBYTES-1) begin
-                rFSM <= s_TX;
+                rFSM <= s_ADD;
                 rCnt <= 0; // Reset counter for transmission            
-                end
+                    end
                 end
           end
           
        s_ADD :
+       begin
+          if (rStart == 0 && wDone == 0)
+              rStart <= 1;
+          else
+              rStart <= 0;          // Wait for addition to complete
+          if (wDone) 
           begin
-            if (wRxDone)
-              begin 
-              rBuffer <= {rBuffer[NBYTES*8-9:0], wRxByte};
-              rCnt <= rCnt + 1;
-              if (rCnt == NBYTES-1) begin
-                rFSM <= s_TX;
-                rCnt <= 0; // Reset counter for transmission            
-                end
-                end
+            rResult <= {7'b0000000, wRes};
+            rFSM <= s_TX;
           end
+        end
              
         s_TX :
           begin
-            if ( (rCnt < NBYTES) && (wTxBusy ==0) ) 
+            if ( (rCnt <= NBYTES) && (wTxBusy ==0) ) 
               begin
                 rFSM <= s_WAIT_TX;
                 rTxStart <= 1; 
-                rTxByte <= rBuffer[NBYTES*8-1:NBYTES*8-8];            // we send the uppermost byte
-                rBuffer <= {rBuffer[NBYTES*8-9:0] , 8'b0000_0000};    // we shift from right to left
+                rTxByte <= rResult[(NBYTES+1)*8-1:(NBYTES+1)*8-8];
+                rResult <= {rResult[(NBYTES+1)*8-9:0], 8'b0000_0000};
                 rCnt <= rCnt + 1;
               end 
             else 
