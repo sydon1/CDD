@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<webTalkData  fileName='usage_statistics_webtalk.xml'  majorVersion='1' minorVersion='0' timeStamp='Thu Mar 27 11:56:58 2025'>
+<webTalkData  fileName='usage_statistics_webtalk.xml'  majorVersion='1' minorVersion='0' timeStamp='Sun Apr 27 12:27:56 2025'>
 <section name="__ROOT__" level="0" order="1" description="">
  <section name="software_version_and_target_device" level="1" order="1" description="">
   <keyValuePair key="beta" value="FALSE" description="" />
   <keyValuePair key="build_version" value="2902540" description="" />
-  <keyValuePair key="date_generated" value="Thu Mar 27 11:56:58 2025" description="" />
+  <keyValuePair key="date_generated" value="Sun Apr 27 12:27:56 2025" description="" />
   <keyValuePair key="os_platform" value="LIN64" description="" />
   <keyValuePair key="product_version" value="Vivado v2020.1 (64-bit)" description="" />
   <keyValuePair key="project_id" value="489a68fa51584357ab6b4034a0933de7" description="" />
-  <keyValuePair key="project_iteration" value="12" description="" />
+  <keyValuePair key="project_iteration" value="13" description="" />
   <keyValuePair key="random_id" value="d3b012ce409d59348556873bb2c4459c" description="" />
   <keyValuePair key="registration_id" value="d3b012ce409d59348556873bb2c4459c" description="" />
   <keyValuePair key="route_design" value="TRUE" description="" />
@@ -20,7 +20,7 @@
  </section>
  <section name="user_environment" level="1" order="2" description="">
   <keyValuePair key="cpu_name" value="AMD Ryzen 7 4700U with Radeon Graphics" description="" />
-  <keyValuePair key="cpu_speed" value="4151.477 MHz" description="" />
+  <keyValuePair key="cpu_speed" value="3832.587 MHz" description="" />
   <keyValuePair key="os_name" value="Ubuntu" description="" />
   <keyValuePair key="os_release" value="Ubuntu 24.04.2 LTS" description="" />
   <keyValuePair key="system_ram" value="16.000 GB" description="" />
@@ -206,7 +206,7 @@
    <keyValuePair key="output_load" value="5.000000" description="" />
    <keyValuePair key="output_toggle" value="12.500000" description="" />
    <keyValuePair key="package" value="clg400" description="" />
-   <keyValuePair key="pct_clock_constrained" value="1.890000" description="" />
+   <keyValuePair key="pct_clock_constrained" value="2.100000" description="" />
    <keyValuePair key="pct_inputs_defined" value="33" description="" />
    <keyValuePair key="platform" value="lin64" description="" />
    <keyValuePair key="process" value="typical" description="" />
@@ -565,10 +565,10 @@
    <keyValuePair key="-verilog_define" value="default::[not_specified]" description="" />
   </section>
   <section name="usage" level="2" order="2" description="">
-   <keyValuePair key="elapsed" value="00:00:18s" description="" />
+   <keyValuePair key="elapsed" value="00:00:17s" description="" />
    <keyValuePair key="hls_ip" value="0" description="" />
    <keyValuePair key="memory_gain" value="0.000MB" description="" />
-   <keyValuePair key="memory_peak" value="2158.340MB" description="" />
+   <keyValuePair key="memory_peak" value="2158.336MB" description="" />
   </section>
  </section>
  <section name="unisim_transformation" level="1" order="10" description="">
@@ -612,8 +612,8 @@
    <keyValuePair key="addvirtualcabledialog_host_name" value="1" description="" />
    <keyValuePair key="basedialog_cancel" value="11" description="" />
    <keyValuePair key="basedialog_no" value="2" description="" />
-   <keyValuePair key="basedialog_ok" value="89" description="" />
-   <keyValuePair key="basedialog_yes" value="20" description="" />
+   <keyValuePair key="basedialog_ok" value="90" description="" />
+   <keyValuePair key="basedialog_yes" value="21" description="" />
    <keyValuePair key="boardchooser_board_table" value="1" description="" />
    <keyValuePair key="cmdmsgdialog_ok" value="2" description="" />
    <keyValuePair key="commandsinput_type_tcl_command_here" value="3" description="" />
@@ -627,7 +627,7 @@
    <keyValuePair key="createsrcfiledialog_file_name" value="19" description="" />
    <keyValuePair key="defaultoptionpane_close" value="1" description="" />
    <keyValuePair key="filesetpanel_file_set_panel_tree" value="279" description="" />
-   <keyValuePair key="flownavigatortreepanel_flow_navigator_tree" value="87" description="" />
+   <keyValuePair key="flownavigatortreepanel_flow_navigator_tree" value="89" description="" />
    <keyValuePair key="gettingstartedview_create_new_project" value="2" description="" />
    <keyValuePair key="graphicalview_zoom_fit" value="8" description="" />
    <keyValuePair key="hardwaretreepanel_hardware_tree_table" value="14" description="" />
@@ -635,7 +635,7 @@
    <keyValuePair key="mainmenumgr_checkpoint" value="1" description="" />
    <keyValuePair key="mainmenumgr_file" value="6" description="" />
    <keyValuePair key="mainmenumgr_project" value="3" description="" />
-   <keyValuePair key="messagewithoptiondialog_dont_show_this_dialog_again" value="1" description="" />
+   <keyValuePair key="messagewithoptiondialog_dont_show_this_dialog_again" value="2" description="" />
    <keyValuePair key="msgtreepanel_message_view_tree" value="28" description="" />
    <keyValuePair key="msgview_information_messages" value="1" description="" />
    <keyValuePair key="msgview_warning_messages" value="1" description="" />
@@ -661,8 +661,8 @@
    <keyValuePair key="pacommandnames_src_replace_file" value="1" description="" />
    <keyValuePair key="paviews_address_editor" value="1" description="" />
    <keyValuePair key="paviews_code" value="6" description="" />
-   <keyValuePair key="paviews_project_summary" value="25" description="" />
-   <keyValuePair key="planaheadtab_refresh_changed_modules" value="13" description="" />
+   <keyValuePair key="paviews_project_summary" value="26" description="" />
+   <keyValuePair key="planaheadtab_refresh_changed_modules" value="14" description="" />
    <keyValuePair key="planaheadtab_refresh_ip_catalog" value="1" description="" />
    <keyValuePair key="programdebugtab_open_target" value="28" description="" />
    <keyValuePair key="programdebugtab_program_device" value="8" description="" />
@@ -683,7 +683,7 @@
    <keyValuePair key="srcmenu_ip_hierarchy" value="17" description="" />
    <keyValuePair key="stalemoreaction_force_up_to_date" value="4" description="" />
    <keyValuePair key="stalemoreaction_out_of_date_details" value="3" description="" />
-   <keyValuePair key="syntheticagettingstartedview_recent_projects" value="5" description="" />
+   <keyValuePair key="syntheticagettingstartedview_recent_projects" value="6" description="" />
    <keyValuePair key="systembuilderview_add_ip" value="1" description="" />
    <keyValuePair key="targetchooserpanel_add_xilinx_virtual_cable_as_hardware" value="2" description="" />
    <keyValuePair key="taskbanner_close" value="2" description="" />
@@ -713,7 +713,7 @@
    <keyValuePair key="recustomizecore" value="2" description="" />
    <keyValuePair key="refreshdevice" value="1" description="" />
    <keyValuePair key="regeneratersblayout" value="3" description="" />
-   <keyValuePair key="runbitgen" value="24" description="" />
+   <keyValuePair key="runbitgen" value="25" description="" />
    <keyValuePair key="runimplementation" value="10" description="" />
    <keyValuePair key="runsynthesis" value="1" description="" />
    <keyValuePair key="savefileproxyhandler" value="1" description="" />
@@ -729,7 +729,7 @@
    <keyValuePair key="viewtaskprojectmanager" value="4" description="" />
   </section>
   <section name="other_data" level="2" order="3" description="">
-   <keyValuePair key="guimode" value="7" description="" />
+   <keyValuePair key="guimode" value="9" description="" />
   </section>
   <section name="project_data" level="2" order="4" description="">
    <keyValuePair key="constraintsetcount" value="1" description="" />
