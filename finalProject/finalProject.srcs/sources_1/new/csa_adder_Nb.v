@@ -1,6 +1,5 @@
 `timescale 1ns / 1ps
 
-// steps taken from slides images lecture 3C
 module csa_adder_Nb #(
     parameter ADDER_WIDTH = 256
 )
@@ -40,12 +39,13 @@ module csa_adder_Nb #(
         end
     endgenerate
     
-    //Shift carries left by 1 and extend with 0
+    // Step 2 Shift carries left by 1 and extend with 0
     wire [ADDER_WIDTH:0] shifted_carries = {csa_carry, 1'b0};
     
-    // Add sum and shifted carries
+    // Step 3: Add sum and shifted carries
     wire [ADDER_WIDTH:0] final_result = {1'b0, csa_sum} + shifted_carries;
     
+    // Extract outputs
     assign oSum = final_result[ADDER_WIDTH-1:0];
     assign oCarry = final_result[ADDER_WIDTH];
     
