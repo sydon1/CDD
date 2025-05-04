@@ -6,6 +6,7 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "ADDER_WIDTH" -parent ${Page_0}
   ipgui::add_param $IPINST -name "BAUD_RATE" -parent ${Page_0}
   ipgui::add_param $IPINST -name "CLK_FREQ" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "CMP_WIDTH" -parent ${Page_0}
   ipgui::add_param $IPINST -name "NBYTES" -parent ${Page_0}
   ipgui::add_param $IPINST -name "OPERAND_WIDTH" -parent ${Page_0}
 
@@ -36,6 +37,15 @@ proc update_PARAM_VALUE.CLK_FREQ { PARAM_VALUE.CLK_FREQ } {
 
 proc validate_PARAM_VALUE.CLK_FREQ { PARAM_VALUE.CLK_FREQ } {
 	# Procedure called to validate CLK_FREQ
+	return true
+}
+
+proc update_PARAM_VALUE.CMP_WIDTH { PARAM_VALUE.CMP_WIDTH } {
+	# Procedure called to update CMP_WIDTH when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.CMP_WIDTH { PARAM_VALUE.CMP_WIDTH } {
+	# Procedure called to validate CMP_WIDTH
 	return true
 }
 
@@ -71,6 +81,11 @@ proc update_MODELPARAM_VALUE.ADDER_WIDTH { MODELPARAM_VALUE.ADDER_WIDTH PARAM_VA
 proc update_MODELPARAM_VALUE.NBYTES { MODELPARAM_VALUE.NBYTES PARAM_VALUE.NBYTES } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.NBYTES}] ${MODELPARAM_VALUE.NBYTES}
+}
+
+proc update_MODELPARAM_VALUE.CMP_WIDTH { MODELPARAM_VALUE.CMP_WIDTH PARAM_VALUE.CMP_WIDTH } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.CMP_WIDTH}] ${MODELPARAM_VALUE.CMP_WIDTH}
 }
 
 proc update_MODELPARAM_VALUE.CLK_FREQ { MODELPARAM_VALUE.CLK_FREQ PARAM_VALUE.CLK_FREQ } {

@@ -12,7 +12,6 @@ module cba_adder_Nb #(
 );
     generate
         if (ADDER_WIDTH == 4) begin
-            // Use basic 4-bit CBA for width=4
             cba_4bit cba_inst(
                 .iA(iA),
                 .iB(iB),
@@ -23,7 +22,6 @@ module cba_adder_Nb #(
             );
         end
         else if (ADDER_WIDTH == 8) begin
-            // Use basic 8-bit CBA for width=8
             cba_8bit cba_inst(
                 .iA(iA),
                 .iB(iB),
@@ -42,7 +40,8 @@ module cba_adder_Nb #(
             assign block_carry[0] = iCarry;
             
             genvar i;
-            for (i = 0; i < NUM_BLOCKS; i = i + 1) begin: gen_blocks
+            for (i = 0; i < NUM_BLOCKS; i = i + 1)
+            begin: gen_blocks
                 cba_8bit block(
                     .iA(iA[(i+1)*8-1:i*8]),
                     .iB(iB[(i+1)*8-1:i*8]),

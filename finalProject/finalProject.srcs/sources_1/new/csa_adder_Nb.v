@@ -11,7 +11,7 @@ module csa_adder_Nb #(
 );
     
     wire [ADDER_WIDTH-1:0] csa_sum;
-    wire [ADDER_WIDTH-1:0] csa_carry;  // Changed from [ADDER_WIDTH:1] to be consistent
+    wire [ADDER_WIDTH-1:0] csa_carry;
     
     genvar i;
     generate
@@ -39,13 +39,12 @@ module csa_adder_Nb #(
         end
     endgenerate
     
-    // Step 2 Shift carries left by 1 and extend with 0
+    //Shift carries left by 1 and extend with 0
     wire [ADDER_WIDTH:0] shifted_carries = {csa_carry, 1'b0};
     
-    // Step 3: Add sum and shifted carries
+    // Add sum and shifted carries
     wire [ADDER_WIDTH:0] final_result = {1'b0, csa_sum} + shifted_carries;
     
-    // Extract outputs
     assign oSum = final_result[ADDER_WIDTH-1:0];
     assign oCarry = final_result[ADDER_WIDTH];
     

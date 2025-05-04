@@ -70,6 +70,7 @@ output wire oTx;
     .OPERAND_WIDTH(512),
     .ADDER_WIDTH(16),
     .NBYTES(64),
+    .CMP_WIDTH(32),
     .CLK_FREQ(125000000),
     .BAUD_RATE(115200)
   ) inst (

@@ -7,7 +7,7 @@ module csa(
     // Sum is XOR of all three inputs  
     assign oSum = iA ^ iB ^ iC;
     
-    // Carry is majority function of three inputs
+    // Carry is majority of three inputs
     assign oCarry = (iA & iB) | (iB & iC) | (iA & iC);
     
 endmodule
