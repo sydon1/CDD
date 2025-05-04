@@ -6,7 +6,7 @@ module cba_4bit(
     input wire iCarry,
     output wire [3:0] oSum,
     output wire oCarry,
-    output wire oBlockPropogate
+    output wire oBlockPropagate
 );
     //bit propagate, generate and carry signals
     wire [3:0] p, g;

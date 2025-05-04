@@ -47,16 +47,17 @@ module cla_adder_Nb #(
                 .oCarry(oCarry)
             );
         end
-        
-        else if (ADDER_WIDTH % 32 == 0) begin
+        //Here we look for which blocks we can use
+        else if (ADDER_WIDTH % 32 == 0) 
+        begin
             wire [ADDER_WIDTH/32:0] carries;
             assign carries[0] = iCarry;
             assign oCarry = carries[ADDER_WIDTH/32];
             
             genvar i;
             for (i = 0; i < ADDER_WIDTH/32; i = i + 1) 
-            begin
-            cla_32bit cla_inst(
+            begin:  gen_blocks32
+            cla_32bit cla_inst32(
                     .iA(iA[(i+1)*32-1:i*32]),
                     .iB(iB[(i+1)*32-1:i*32]),
                     .iCarry(carries[i]),
@@ -66,15 +67,16 @@ module cla_adder_Nb #(
             end
         end
         
-        else if (ADDER_WIDTH % 16 == 0) begin
+        else if (ADDER_WIDTH % 16 == 0) 
+        begin
             wire [ADDER_WIDTH/16:0] carries;
             assign carries[0] = iCarry;
             assign oCarry = carries[ADDER_WIDTH/16];
             
             genvar i;
             for (i = 0; i < ADDER_WIDTH/16; i = i + 1) 
-            begin
-            cla_16bit cla_inst(
+            begin: gen_blocks16
+            cla_16bit cla_inst16(
                     .iA(iA[(i+1)*16-1:i*16]),
                     .iB(iB[(i+1)*16-1:i*16]),
                     .iCarry(carries[i]),
@@ -84,14 +86,16 @@ module cla_adder_Nb #(
             end
         end
         
-        else if (ADDER_WIDTH % 8 == 0) begin
+        else if (ADDER_WIDTH % 8 == 0) 
+        begin
             wire [ADDER_WIDTH/8:0] carries;
             assign carries[0] = iCarry;
             assign oCarry = carries[ADDER_WIDTH/8];
             
             genvar i;
-            for (i = 0; i < ADDER_WIDTH/8; i = i + 1) begin : cla8_blocks
-                cla_8bit cla_inst(
+            for (i = 0; i < ADDER_WIDTH/8; i = i + 1) 
+            begin:  gen_blocks8
+            cla_8bit cla_inst8(
                     .iA(iA[(i+1)*8-1:i*8]),
                     .iB(iB[(i+1)*8-1:i*8]),
                     .iCarry(carries[i]),
@@ -100,8 +104,9 @@ module cla_adder_Nb #(
                 );
             end
         end
-        //mixed 32 16
-        else if ((ADDER_WIDTH % 32 != 0) && (ADDER_WIDTH % 16 == 0)) begin
+        //mixed blocks of 32 / 16 
+        else if ((ADDER_WIDTH % 32 != 0) && (ADDER_WIDTH % 16 == 0)) 
+        begin
             localparam NUM_32BIT = ADDER_WIDTH / 32;
             localparam REMAINING = ADDER_WIDTH - (NUM_32BIT * 32);
             localparam NUM_16BIT = REMAINING / 16;
@@ -112,8 +117,8 @@ module cla_adder_Nb #(
             
             genvar i;
             for (i = 0; i < NUM_32BIT; i = i + 1) 
-            begin
-                cla_32bit cla_inst(
+            begin: gen_blocks32
+            cla_32bit cla_inst32(
                     .iA(iA[(i+1)*32-1:i*32]),
                     .iB(iB[(i+1)*32-1:i*32]),
                     .iCarry(carries[i]),
@@ -123,8 +128,8 @@ module cla_adder_Nb #(
             end
             
             for (i = 0; i < NUM_16BIT; i = i + 1) 
-            begin
-                cla_16bit cla_inst(
+            begin: gen_blocks16
+            cla_16bit cla_inst16(
                     .iA(iA[NUM_32BIT*32 + (i+1)*16-1:NUM_32BIT*32 + i*16]),
                     .iB(iB[NUM_32BIT*32 + (i+1)*16-1:NUM_32BIT*32 + i*16]),
                     .iCarry(carries[NUM_32BIT+i]),
@@ -147,8 +152,8 @@ module cla_adder_Nb #(
             // Instantiate 16-bit blocks
             genvar i;
             for (i = 0; i < NUM_16BIT; i = i + 1) 
-            begin
-                cla_16bit cla_inst(
+            begin: gen_blocks16
+            cla_16bit cla_inst16(
                     .iA(iA[(i+1)*16-1:i*16]),
                     .iB(iB[(i+1)*16-1:i*16]),
                     .iCarry(carries[i]),
@@ -159,8 +164,8 @@ module cla_adder_Nb #(
             
             // Instantiate remaining 8-bit blocks
             for (i = 0; i < NUM_8BIT; i = i + 1) 
-            begin 
-                cla_8bit cla_inst(
+            begin: gen_blocks8
+            cla_8bit cla_inst8(
                     .iA(iA[NUM_16BIT*16 + (i+1)*8-1:NUM_16BIT*16 + i*8]),
                     .iB(iB[NUM_16BIT*16 + (i+1)*8-1:NUM_16BIT*16 + i*8]),
                     .iCarry(carries[NUM_16BIT+i]),
@@ -188,8 +193,8 @@ module cla_adder_Nb #(
             
             // Instantiate 32-bit blocks
             for (i = 0; i < NUM_32BIT; i = i + 1) 
-            begin 
-            cla_32bit cla_inst(
+            begin: gen_blocks32 
+            cla_32bit cla_inst32(
                     .iA(iA[(i+1)*32-1:i*32]),
                     .iB(iB[(i+1)*32-1:i*32]),
                     .iCarry(carries[i]),
@@ -200,8 +205,8 @@ module cla_adder_Nb #(
             
             // Instantiate 16-bit blocks
             for (i = 0; i < NUM_16BIT; i = i + 1) 
-            begin 
-            cla_16bit cla_inst(
+            begin: gen_blocks16 
+            cla_16bit cla_inst16(
                     .iA(iA[NUM_32BIT*32 + (i+1)*16-1:NUM_32BIT*32 + i*16]),
                     .iB(iB[NUM_32BIT*32 + (i+1)*16-1:NUM_32BIT*32 + i*16]),
                     .iCarry(carries[NUM_32BIT+i]),
@@ -212,8 +217,8 @@ module cla_adder_Nb #(
             
             // Instantiate 8-bit blocks
             for (i = 0; i < NUM_8BIT; i = i + 1) 
-            begin
-            cla_8bit cla_inst(
+            begin: gen_blocks8
+            cla_8bit cla_inst8(
                     .iA(iA[NUM_32BIT*32 + NUM_16BIT*16 + (i+1)*8-1:NUM_32BIT*32 + NUM_16BIT*16 + i*8]),
                     .iB(iB[NUM_32BIT*32 + NUM_16BIT*16 + (i+1)*8-1:NUM_32BIT*32 + NUM_16BIT*16 + i*8]),
                     .iCarry(carries[NUM_32BIT+NUM_16BIT+i]),
@@ -224,8 +229,8 @@ module cla_adder_Nb #(
             
             // Instantiate 4-bit blocks
             for (i = 0; i < NUM_4BIT; i = i + 1) 
-            begin
-            cla_4bit cla_inst(
+            begin: gen_blocks4
+            cla_4bit cla_inst4(
                     .iA(iA[NUM_32BIT*32 + NUM_16BIT*16 + NUM_8BIT*8 + (i+1)*4-1:NUM_32BIT*32 + NUM_16BIT*16 + NUM_8BIT*8 + i*4]),
                     .iB(iB[NUM_32BIT*32 + NUM_16BIT*16 + NUM_8BIT*8 + (i+1)*4-1:NUM_32BIT*32 + NUM_16BIT*16 + NUM_8BIT*8 + i*4]),
                     .iCarry(carries[NUM_32BIT+NUM_16BIT+NUM_8BIT+i]),

@@ -72,7 +72,6 @@ proc create_report { reportName command } {
 OPTRACE "design_1_uart_top_0_0_synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 2
 set_param xicom.use_bs_reader 1
-set_param synth.incrementalSynthesisCache ./.Xil/Vivado-188725-sodir-HP-Laptop/incrSyn
 set_msg_config -id {HDL-1065} -limit 10000
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
@@ -94,13 +93,9 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_16bit.v
-  /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_32bit.v
-  /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_4bit.v
-  /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_8bit.v
-  /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_adder_Nb.v
+  /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/csa.v
+  /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/csa_adder_Nb.v
   /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/mp_adder.v
-  /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/partial_full_adder.v
   /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/uart_rx.v
   /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/uart_tx.v
   /home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/uart_top.v

@@ -2,7 +2,7 @@
 
 // Parameterized Carry Bypass Adder
 module cba_adder_Nb #(
-    parameter ADDER_WIDTH = 32
+    parameter ADDER_WIDTH = 16
     )
     (
     input wire [ADDER_WIDTH-1:0] iA, iB,
@@ -41,9 +41,8 @@ module cba_adder_Nb #(
             wire [NUM_BLOCKS:0] block_carry;
             assign block_carry[0] = iCarry;
             
-            // Instantiate the 8-bit blocks
             genvar i;
-            for (i = 0; i < NUM_BLOCKS; i = i + 1) begin : gen_blocks
+            for (i = 0; i < NUM_BLOCKS; i = i + 1) begin: gen_blocks
                 cba_8bit block(
                     .iA(iA[(i+1)*8-1:i*8]),
                     .iB(iB[(i+1)*8-1:i*8]),
@@ -54,10 +53,7 @@ module cba_adder_Nb #(
                 );
             end
             
-            // Implement inter-block bypassing with direct assignments
-            // Use a synthesizable approach for combining all block propagate signals
-            
-            // For 32-bit (NUM_BLOCKS=4), we'd have:
+            // For 32-bit (NUM_BLOCKS=4)
             wire all_blocks_propagate;
             
             if (NUM_BLOCKS == 1) begin
@@ -118,7 +114,6 @@ module cba_adder_Nb #(
                 .oBlockPropagate(block_propagate[NUM_8BIT])
             );
             
-            // Implement inter-block bypassing with direct assignments
             wire all_blocks_propagate;
             
             if (NUM_8BIT == 0) begin

@@ -1,0 +1,17 @@
+0.7
+2020.1
+May 27 2020
+19:59:15
+/home/sodir/CDD/finalProject/finalProject.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
+/home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_16bit.v,1746022085,verilog,,/home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_32bit.v,,cla_16bit,,,,,,,,
+/home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_32bit.v,1746019602,verilog,,/home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_4bit.v,,cla_32bit,,,,,,,,
+/home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_4bit.v,1746014472,verilog,,/home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_8bit.v,,cla_4bit,,,,,,,,
+/home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_8bit.v,1746022053,verilog,,/home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_adder_Nb.v,,cla_8bit,,,,,,,,
+/home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/cla_adder_Nb.v,1746307562,verilog,,/home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/partial_full_adder.v,,cla_adder_Nb,,,,,,,,
+/home/sodir/CDD/finalProject/finalProject.srcs/sources_1/new/partial_full_adder.v,1746009009,verilog,,/home/sodir/Downloads/cla_adder_Nb_TB.v,,partial_full_adder,,,,,,,,
+/home/sodir/Downloads/CBadder_Nb.v,1746012814,verilog,,,,CBadder_Nb,,,,,,,,
+/home/sodir/Downloads/cla_16bit_TB.v,1746296604,verilog,,,,cla_16bit_TB,,,,,,,,
+/home/sodir/Downloads/cla_32bit_TB.v,1746296607,verilog,,,,cla_32bit_TB,,,,,,,,
+/home/sodir/Downloads/cla_4bit_TB.v,1746296602,verilog,,,,cla_4bit_TB,,,,,,,,
+/home/sodir/Downloads/cla_8bit_TB.v,1746296603,verilog,,,,cla_8bit_TB,,,,,,,,
+/home/sodir/Downloads/cla_adder_Nb_TB.v,1746308210,verilog,,,,cla_adder_Nb_TB,,,,,,,,

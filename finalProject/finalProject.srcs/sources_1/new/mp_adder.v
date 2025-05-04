@@ -6,7 +6,7 @@ module mp_adder #(
       // if the operands you want to add have an OPERAND_WIDTH non-multiple of ADDER_WIDTH
       //   you'll have to extend them by padding them with zeroes
       parameter OPERAND_WIDTH = 512,
-      parameter ADDER_WIDTH   = 44,
+      parameter ADDER_WIDTH   = 256,
       //parameter N_ITERATIONS  = OPERAND_WIDTH / ADDER_WIDTH
       parameter N_ITERATIONS = (OPERAND_WIDTH + ADDER_WIDTH - 1) / ADDER_WIDTH
     )
@@ -83,7 +83,7 @@ module mp_adder #(
       );
 */
       
-      
+/*      
      cla_adder_Nb #( .ADDER_WIDTH(ADDER_WIDTH) ) 
      cla_inst   (
         .iA( operandA ), 
@@ -92,7 +92,7 @@ module mp_adder #(
         .oSum(result),
         .oCarry(carry_out)
       ); 
-
+*/
 /*
     cba_adder_Nb #( .ADDER_WIDTH(ADDER_WIDTH) ) 
     cba_inst (
@@ -103,6 +103,16 @@ module mp_adder #(
         .oCarry(carry_out)
     );
 */
+
+    csa_adder_Nb #( .ADDER_WIDTH(ADDER_WIDTH) ) 
+    csa_inst   (
+        .iA( operandA ), 
+        .iB( operandB ),
+        .iCarry( carry_in ),
+        .oSum(result),
+        .oCarry(carry_out)
+    );
+
     // Describe an OPERAND_WIDTH-bit register for storing the result
     // This shift register should palce the adder output at the MSB ADDER_WIDTH-bits,
     // and the shift the remaining OPERAND_WIDTH-ADDER_WIDTH bits to the right

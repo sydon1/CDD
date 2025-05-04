@@ -2,8 +2,8 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Wed Apr 30 16:18:01 2025
-# Process ID: 299012
+# Start of session at: Sun May  4 02:07:21 2025
+# Process ID: 144908
 # Current directory: /home/sodir/CDD/finalProject/finalProject.runs/synth_1
 # Command line: vivado -log design_1_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
 # Log file: /home/sodir/CDD/finalProject/finalProject.runs/synth_1/design_1_wrapper.vds

@@ -22,7 +22,7 @@ module cba_8bit(
         .iCarry(iCarry),
         .oSum(oSum[3:0]),
         .oCarry(c4),
-        .oBlockPropogate(block0_propagate)
+        .oBlockPropagate(block0_propagate)
 );
     
     cba_4bit cba_high(
@@ -31,9 +31,9 @@ module cba_8bit(
         .iCarry(c4),
         .oSum(oSum[7:4]),
         .oCarry(oCarry),
-        .oBlockPropogate(block1_propagate)
+        .oBlockPropagate(block1_propagate)
 
     );
-    assign oBlockPropogate = block0_propagate & block1_propagate;
+    assign oBlockPropagate = block0_propagate & block1_propagate;
     
 endmodule

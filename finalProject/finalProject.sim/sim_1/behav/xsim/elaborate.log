@@ -1,16 +1,8 @@
 Vivado Simulator 2020.1
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: /home/sodir/Software/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 489a68fa51584357ab6b4034a0933de7 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot mp_adder_TB_behav xil_defaultlib.mp_adder_TB xil_defaultlib.glbl -log elaborate.log 
+Running: /home/sodir/Software/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 7f4c3fa8d60b4aecb7b8d6765d859e37 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot CBadder_Nb_behav xil_defaultlib.CBadder_Nb xil_defaultlib.glbl -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-Completed static elaboration
-Starting simulation data flow analysis
-Completed simulation data flow analysis
-Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.full_adder
-Compiling module xil_defaultlib.ripple_carry_adder_Nb_default
-Compiling module xil_defaultlib.mp_adder(OPERAND_WIDTH=128)
-Compiling module xil_defaultlib.mp_adder_TB
-Compiling module xil_defaultlib.glbl
-Built simulation snapshot mp_adder_TB_behav
+ERROR: [VRFC 10-2063] Module <full_adder_GP> not found while processing module instance <FA0> [/home/sodir/Downloads/CBadder_Nb.v:72]
+ERROR: [XSIM 43-3322] Static elaboration of top level Verilog design unit(s) in library work failed.
